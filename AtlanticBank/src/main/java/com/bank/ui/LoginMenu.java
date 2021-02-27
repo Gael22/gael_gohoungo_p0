@@ -2,7 +2,12 @@ package com.bank.ui;
 
 import java.util.Scanner;
 
+import com.bank.pojo.User;
+import com.bank.service.AuthService;
+
 public class LoginMenu implements Menu {
+	
+	private AuthService authService;
 	
 	private Scanner scan;
 
@@ -16,6 +21,10 @@ public class LoginMenu implements Menu {
 		String username = scan.nextLine();
 		System.out.println("Please Enter password");
 		String password = scan.nextLine();
+		
+		User user = new User(username, password);
+		
+		authService.authenticateUser(user);
 		
 	}
 
@@ -33,5 +42,14 @@ public class LoginMenu implements Menu {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public AuthService getAuthService() {
+		return authService;
+	}
+
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
+	
 
 }
