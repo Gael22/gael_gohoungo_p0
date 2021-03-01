@@ -2,29 +2,59 @@ package com.bank.ui;
 
 import java.util.Scanner;
 
+import com.bank.exception.InvalidPassword;
+import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 import com.bank.service.AuthService;
 
 public class LoginMenu implements Menu {
-	
 	private AuthService authService;
-	
+
 	private Scanner scan;
 
+	public Scanner getScanner() {
+		return scan;
+	}
+
+	public void setScanner(Scanner scan) {
+		this.scan = scan;
+	}
+
+	public AuthService getUserService() {
+		return authService;
+	}
+
+	public void setUserService(AuthService userService) {
+		this.authService = userService;
+	}
+
 	public Menu advance() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void dispalyOptions() {
+	public void displayOptions() {
 		System.out.println("Please Enter Username");
 		String username = scan.nextLine();
-		System.out.println("Please Enter password");
+		System.out.println("Please Enter Password");
 		String password = scan.nextLine();
 		
 		User user = new User(username, password);
 		
-		authService.authenticateUser(user);
+		
+		try {
+			authService.authenticateUser(user);
+			System.out.println("Login successful");
+		} catch (UserNotFound e) {
+			System.out.println("Username does not exist.  Please register an account.");
+		} catch (InvalidPassword e) {
+			System.out.println("Authentication error, check username/password");
+		} catch (Exception e) {
+			System.out.println("Sorry, something went wrong. Please try again later.");
+			e.printStackTrace();
+		} finally {
+			System.out.println("Login Process Ended");
+		}
+		
 		
 	}
 
@@ -33,23 +63,12 @@ public class LoginMenu implements Menu {
 		return null;
 	}
 
-	public Scanner getScanner() {
-		// TODO Auto-generated method stub
-		return null;
+	public LoginMenu() {
+		super();
 	}
 
-	public void setScanner(Scanner scan) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public AuthService getAuthService() {
-		return authService;
-	}
-
-	public void setAuthService(AuthService authService) {
+	public LoginMenu(AuthService authService) {
+		super();
 		this.authService = authService;
 	}
-	
-
 }

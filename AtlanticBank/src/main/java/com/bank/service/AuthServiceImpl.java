@@ -7,7 +7,9 @@ import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 
 public class AuthServiceImpl implements AuthService {
+	
 	private UserDao userDao;
+
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -33,6 +35,16 @@ public class AuthServiceImpl implements AuthService {
 	public User registerUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public AuthServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public AuthServiceImpl(UserDao userDao) {
+		super();
+		this.userDao = userDao;
 	}
 
 }
