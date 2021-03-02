@@ -3,8 +3,8 @@ package com.bank.service;
 import java.util.List;
 
 
-import com.bank.exception.AccountException;
 import com.bank.pojo.Account;
+import com.bank.exception.AccountException;
 
 
 public class AccountServiceImpl implements AccountService{
@@ -34,5 +34,4 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	
-
 }
