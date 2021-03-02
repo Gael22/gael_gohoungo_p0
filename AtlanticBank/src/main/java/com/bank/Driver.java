@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.bank.dao.UserDao;
 import com.bank.dao.UserDaoImpl;
+import com.bank.dao.UserDaoKryo;
 import com.bank.exception.InvalidPassword;
 import com.bank.exception.UserNametaken;
 import com.bank.exception.UserNotFound;
@@ -21,7 +22,7 @@ public class Driver {
 
 		Scanner scan = new Scanner(System.in);
 		
-		UserDao userDao = new UserDaoImpl();
+		UserDao userDao = new UserDaoKryo();
 		
 		AuthService authService = new AuthServiceImpl(userDao);
 		

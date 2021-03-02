@@ -8,6 +8,7 @@ import com.bank.pojo.User;
 import com.bank.service.AuthService;
 
 public class LoginMenu implements Menu {
+	
 	private AuthService authService;
 
 	private Scanner scan;

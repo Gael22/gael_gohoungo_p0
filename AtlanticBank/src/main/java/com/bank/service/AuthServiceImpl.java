@@ -20,7 +20,13 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	public boolean exixtingUser(User user) {
-		// TODO Auto-generated method stub
+		try {
+			if (userDao.getUserByUsername(user.getUsername()) != null) {
+				return true;
+			}
+		} catch (UserNotFound e) {
+			return false;
+		}
 		return false;
 	}
 
