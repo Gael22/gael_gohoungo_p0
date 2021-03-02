@@ -1,6 +1,6 @@
-package com.bank.service.exception;
+package com.bank.exception;
 
-public class AccountException extends Exception {
+public class AccountException extends Exception{
 
 	/**
 	 * 
@@ -33,4 +33,6 @@ public class AccountException extends Exception {
 	}
 
 	
+	
+
 }

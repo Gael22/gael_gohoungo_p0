@@ -2,10 +2,12 @@ package com.bank.service;
 
 import java.util.List;
 
-import com.bank.pojo.Account;
-import com.bank.service.exception.AccountException;
 
-public class AccountServiceImpl implements AccountService {
+import com.bank.exception.AccountException;
+import com.bank.pojo.Account;
+
+
+public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public boolean doesAccountExists(String accountNumber) throws AccountException {
@@ -28,7 +30,9 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void insertAccount(Account customer) throws AccountException {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+	
 
 }
