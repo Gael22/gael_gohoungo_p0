@@ -6,7 +6,7 @@ import com.bank.exception.TransactionException;
 import com.bank.pojo.Transaction;
 import com.bank.pojo.User;
 
-public class TransactionServiceImpl implements TransactionService{
+public class TransferServiceImpl implements TransferService {
 
 	@Override
 	public void updateCount() throws TransactionException {
@@ -27,7 +27,7 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	@Override
-	public List<Transaction> getAllTransactionsOfAUser(User user) throws TransactionException {
+	public List<Transaction> getAllTransactionsOfACustomer(User user) throws TransactionException {
 		// TODO Auto-generated method stub
 		return null;
 	}
