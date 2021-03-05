@@ -2,15 +2,15 @@ package com.bank.service;
 
 import java.util.List;
 
-import com.bank.exception.TransactionException;
-import com.bank.pojo.Transaction;
+import com.bank.exception.TransferException;
+import com.bank.pojo.Transfer;
 import com.bank.pojo.User;
 
 public interface TransferService {
 
-	public void updateCount() throws TransactionException;
-	public Transaction getTransactionById(int id) throws TransactionException;
-	public List<Transaction> getAllTransactions() throws TransactionException;
-	public List<Transaction> getAllTransactionsOfACustomer(User user) throws TransactionException;
-	public Transaction newTransaction(Transaction transaction, User user) throws TransactionException;
+	public int getNumberOfUnapprovedTransfers(User user) throws TransferException;
+	public Transfer getTransferByID(int id) throws TransferException;
+	public List<Transfer> getUnapprovedTransfersForAnAccount(String accountNumber) throws TransferException;
+	public void newTransfer(Transfer transfer) throws TransferException;
+	public void approveTransfer(int id, String accountNumberOfTheReceiver) throws TransferException;
 }

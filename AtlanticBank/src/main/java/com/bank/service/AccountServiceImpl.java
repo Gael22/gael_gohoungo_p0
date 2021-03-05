@@ -2,34 +2,40 @@ package com.bank.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 
 import com.bank.pojo.Account;
+import com.bank.dao.AccountDao;
+import com.bank.dao.AccountDaoImpl;
 import com.bank.exception.AccountException;
 
 
 public class AccountServiceImpl implements AccountService{
+	
+	private AccountDao accountDao = new AccountDaoImpl();
+	private static Logger log = Logger.getLogger(AccountServiceImpl.class);
 
 	@Override
 	public boolean doesAccountExists(String accountNumber) throws AccountException {
-		// TODO Auto-generated method stub
-		return false;
+		return accountDao.doesAccountExists(accountNumber);
 	}
 
 	@Override
 	public Account getAccountByAccountNumber(String accountNumber) throws AccountException {
-		// TODO Auto-generated method stub
-		return null;
+		log.debug("AccountSearchService within getAccountNumber with accountNumber = " + accountNumber);
+		return accountDao.getAccountByAccountNumber(accountNumber);
 	}
 
 	@Override
 	public List<Account> getAllAccounts() throws AccountException {
-		// TODO Auto-generated method stub
-		return null;
+		log.debug("getting all accounts");
+		return accountDao.getAllAccounts();
 	}
 
 	@Override
-	public void insertAccount(Account customer) throws AccountException {
-		// TODO Auto-generated method stub
+	public void insertAccount(Account user) throws AccountException {
+		log.debug("inserting account");
+		accountDao.insertAccount(user);
 		
 	}
 
