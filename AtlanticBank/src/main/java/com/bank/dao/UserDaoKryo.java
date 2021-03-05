@@ -1,5 +1,6 @@
 package com.bank.dao;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.FileNotFoundException;
@@ -30,9 +31,25 @@ public class UserDaoKryo implements UserDao {
 	@Override
 	public void createUser(User user) throws UserNameTaken {
 		
+		File userDir = new File("users\\");
+		if(!userDir.exists()) {
+			userDir.mkdir();
+		}
+		
+		String fileName = FOLDER_NAME + user.getUsername() + FILE_EXTENSION;
+		File file = new File(fileName);
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+				
+			}catch (IOException e) {
+				
+			}
+		}
+		
        log.info("Starting to create user");
 		
-		try(FileOutputStream outputStream = new FileOutputStream(FOLDER_NAME + user.getUsername() + FILE_EXTENSION)) {
+		try(FileOutputStream outputStream = new FileOutputStream(fileName)) {
 			Output output = new Output(outputStream);
 			kryo.writeObject(output, user);
 			output.close();
@@ -46,7 +63,14 @@ public class UserDaoKryo implements UserDao {
 
 	@Override
 	public User getUserByUsername(String username) throws UserNotFound {
-		try (FileInputStream inputStream = new FileInputStream(FOLDER_NAME + username + FILE_EXTENSION)) {
+		
+		String fileName = FOLDER_NAME + username + FILE_EXTENSION;
+		File file = new File(fileName);
+		if(!file.exists()) {
+			return null;
+		}
+		
+		try (FileInputStream inputStream = new FileInputStream(fileName)) {
 			Input input = new Input(inputStream);
 			User user = kryo.readObject(input, User.class);
 			input.close();

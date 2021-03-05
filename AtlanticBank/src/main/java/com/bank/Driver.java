@@ -39,7 +39,7 @@ public class Driver {
 		register.setScanner(scan);
 		
 		welcomeMenu.setScanner(scan);
-		
+	
 		Menu nextMenu = welcomeMenu;
 		
 		do {
