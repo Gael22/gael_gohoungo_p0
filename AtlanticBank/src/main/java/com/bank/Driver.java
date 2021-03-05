@@ -2,12 +2,10 @@ package com.bank;
 
 import java.util.Scanner;
 
+
 import com.bank.dao.UserDao;
 import com.bank.dao.UserDaoImpl;
 import com.bank.dao.UserDaoKryo;
-import com.bank.exception.InvalidPassword;
-import com.bank.exception.UserNametaken;
-import com.bank.exception.UserNotFound;
 import com.bank.service.AuthService;
 import com.bank.service.AuthServiceImpl;
 import com.bank.ui.LoginMenu;
@@ -17,7 +15,7 @@ import com.bank.ui.WelcomeMenu;
 
 public class Driver {
 
-	public static void main(String[] args) throws InvalidPassword, UserNotFound, UserNametaken {
+	public static void main(String[] args) {
 		
 
 		Scanner scan = new Scanner(System.in);
@@ -31,7 +29,7 @@ public class Driver {
 		Menu login = new LoginMenu(authService);
 		
 		Menu welcomeMenu = new WelcomeMenu(login, register);
-		
+
 		((RegistrationMenu)register).setWelcomeMenu(welcomeMenu);
 		
 		((RegistrationMenu)register).setAuthService(authService);
@@ -48,6 +46,7 @@ public class Driver {
 			nextMenu.displayOptions();
 			
 			nextMenu = nextMenu.advance();
+			
 			
 		} while (nextMenu != null);
 		

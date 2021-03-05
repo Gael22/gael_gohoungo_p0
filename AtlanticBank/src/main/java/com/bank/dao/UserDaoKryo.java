@@ -1,6 +1,5 @@
 package com.bank.dao;
 
-
 import java.io.FileInputStream;
 
 import java.io.FileNotFoundException;
@@ -10,7 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.bank.exception.UserNametaken;
+import com.bank.exception.UserNameTaken;
 import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 import com.esotericsoftware.kryo.Kryo;
@@ -21,18 +20,17 @@ import com.esotericsoftware.kryo.io.Output;
 public class UserDaoKryo implements UserDao {
 	
 	private Kryo kryo = new Kryo();
-
+	
 	private Logger log = Logger.getRootLogger();
 	
 	private static final String FOLDER_NAME = "users\\";
 	
 	private static final String FILE_EXTENSION = ".dat";
 
-
 	@Override
-	public void createUser(User user) throws UserNametaken {
-
-		log.info("Starting to create user");
+	public void createUser(User user) throws UserNameTaken {
+		
+       log.info("Starting to create user");
 		
 		try(FileOutputStream outputStream = new FileOutputStream(FOLDER_NAME + user.getUsername() + FILE_EXTENSION)) {
 			Output output = new Output(outputStream);
@@ -43,7 +41,7 @@ public class UserDaoKryo implements UserDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
 
 	@Override
@@ -65,6 +63,7 @@ public class UserDaoKryo implements UserDao {
 		
 		return null;
 	}
+	
 
 	@Override
 	public List<User> getAllUsers() {
@@ -75,13 +74,19 @@ public class UserDaoKryo implements UserDao {
 	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void removeUser(User user) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
+	public UserDaoKryo() {
+		super();
+		kryo.register(User.class);
+	}
+	
+	
 }

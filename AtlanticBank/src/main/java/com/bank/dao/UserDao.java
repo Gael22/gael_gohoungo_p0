@@ -3,13 +3,13 @@ package com.bank.dao;
 
 import java.util.List;
 
-import com.bank.exception.UserNametaken;
+import com.bank.exception.UserNameTaken;
 import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 
 public interface UserDao {
 
-	public void createUser(User user) throws UserNametaken;
+	public void createUser(User user) throws UserNameTaken;
 	
 	public User getUserByUsername(String username) throws UserNotFound;
 	
