@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.bank.dao.UserDao;
 import com.bank.dao.UserDaoImpl;
 import com.bank.dao.UserDaoKryo;
+import com.bank.dao.UserDaoPostgres;
 import com.bank.service.AuthService;
 import com.bank.service.AuthServiceImpl;
 import com.bank.ui.LoginMenu;
@@ -20,7 +21,7 @@ public class Driver {
 
 		Scanner scan = new Scanner(System.in);
 		
-		UserDao userDao = new UserDaoKryo();
+		UserDao userDao = new UserDaoPostgres();
 		
 		AuthService authService = new AuthServiceImpl(userDao);
 		
