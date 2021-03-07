@@ -96,7 +96,7 @@ public class UserDaoKryo implements UserDao {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(User user, String new_password) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -111,6 +111,8 @@ public class UserDaoKryo implements UserDao {
 		super();
 		kryo.register(User.class);
 	}
+
+	
 	
 	
 }

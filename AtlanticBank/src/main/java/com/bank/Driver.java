@@ -2,9 +2,8 @@ package com.bank;
 
 import java.util.Scanner;
 
-
+import com.bank.dao.AccountDaoPostgres;
 import com.bank.dao.UserDao;
-import com.bank.dao.UserDaoImpl;
 import com.bank.dao.UserDaoKryo;
 import com.bank.dao.UserDaoPostgres;
 import com.bank.service.AuthService;
@@ -22,6 +21,7 @@ public class Driver {
 		Scanner scan = new Scanner(System.in);
 		
 		UserDao userDao = new UserDaoPostgres();
+		AccountDaoPostgres AccountDao = new AccountDaoPostgres();
 		
 		AuthService authService = new AuthServiceImpl(userDao);
 		

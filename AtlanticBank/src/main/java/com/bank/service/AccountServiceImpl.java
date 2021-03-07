@@ -6,13 +6,13 @@ import org.apache.log4j.Logger;
 
 import com.bank.pojo.Account;
 import com.bank.dao.AccountDao;
-import com.bank.dao.AccountDaoImpl;
+import com.bank.dao.AccountDaoPostgres;
 import com.bank.exception.AccountException;
 
 
 public class AccountServiceImpl implements AccountService{
 	
-	private AccountDao accountDao = new AccountDaoImpl();
+	private AccountDao accountDao = new AccountDaoPostgres();
 	private static Logger log = Logger.getLogger(AccountServiceImpl.class);
 
 	@Override

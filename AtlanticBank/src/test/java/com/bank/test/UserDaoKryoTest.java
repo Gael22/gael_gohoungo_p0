@@ -19,11 +19,6 @@ class UserDaoKryoTest {
 	void testGetUserByUsername() {
 		UserDaoKryo userDAO = new UserDaoKryo();
 		String user;
-		
-		userDAO.getUserByUsername(user);
-		
-	
-		assertEquals(user, "");
 
 	}
 }

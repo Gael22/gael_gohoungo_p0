@@ -6,7 +6,7 @@ import com.bank.exception.TransferException;
 import com.bank.pojo.Transfer;
 import com.bank.pojo.User;
 
-public class TransferDaoImpl implements TransferDao {
+public class TransferDaoPostgres implements TransferDao {
 
 	@Override
 	public Transfer getTransferByID(int id) throws TransferException {

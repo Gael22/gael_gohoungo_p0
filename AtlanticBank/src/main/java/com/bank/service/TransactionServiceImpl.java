@@ -5,14 +5,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.bank.dao.TransactionDao;
-import com.bank.dao.TransactionDaoImpl;
+import com.bank.dao.TransactionDaoPostgres;
 import com.bank.exception.TransactionException;
 import com.bank.pojo.Transaction;
 import com.bank.pojo.User;
 
 public class TransactionServiceImpl implements TransactionService{
 	
-	private TransactionDao transactionDao = new TransactionDaoImpl();
+	private TransactionDao transactionDao = new TransactionDaoPostgres();
 	private Logger log = Logger.getLogger(TransactionServiceImpl.class);
 
 	@Override

@@ -73,7 +73,7 @@ public class UserDaoPostgres implements UserDao {
 				log.info("User found in DB");
 				user = new User();
 				user.setUsername(rs.getString("username"));
-				user.setPassword(rs.getString("password"));
+				user.setPassword(rs.getString("pass_word"));
 			}
 			
 		} catch (SQLException e) {
