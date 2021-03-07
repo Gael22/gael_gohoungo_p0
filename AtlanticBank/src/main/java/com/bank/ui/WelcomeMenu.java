@@ -8,7 +8,7 @@ public class WelcomeMenu implements Menu {
 	
 	private Menu loginMenu;
 	
-	private Menu registractionMenu;
+	private Menu registrationMenu;
 	
 	private Menu nextMenu;
 	
@@ -26,7 +26,7 @@ public class WelcomeMenu implements Menu {
 		if ("login".equals(answer)) {
 			nextMenu = loginMenu;
 		} else if ("register".equals(answer)) {
-			nextMenu = registractionMenu;
+			nextMenu = registrationMenu;
 		} else {
 			System.out.println("invalid input");
 			//redirect user to same welcome menu
@@ -55,10 +55,10 @@ public class WelcomeMenu implements Menu {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WelcomeMenu(Menu loginMenu, Menu registractionMenu) {
+	public WelcomeMenu(Menu loginMenu, Menu registrationMenu) {
 		super();
 		this.loginMenu = loginMenu;
-		this.registractionMenu = registractionMenu;
+		this.registrationMenu = registrationMenu;
 	}
 
 }

@@ -2,9 +2,7 @@ package com.bank.ui;
 
 import java.util.Scanner;
 
-import com.bank.exception.InvalidPassword;
-import com.bank.exception.UserNametaken;
-import com.bank.exception.UserNotFound;
+import com.bank.exception.UserNameTaken;
 import com.bank.pojo.User;
 import com.bank.service.AuthService;
 
@@ -24,15 +22,20 @@ public class RegistrationMenu implements Menu {
 	}
 
 	@Override
-	public void displayOptions() throws UserNametaken {
+	public void displayOptions() {
 		User user = new User();
 		System.out.println("Please enter a new username:");
 		user.setUsername(scan.nextLine());
 		System.out.println("Please enter a new password:");
 		user.setPassword(scan.nextLine());
-		if (!authService.exixtingUser(user)) {
-			authService.registerUser(user);
-			nextMenu = null;
+		if (!authService.existingUser(user)) {
+			try {
+				authService.registerUser(user);
+				nextMenu = null;
+			} catch (UserNameTaken e) {
+				System.out.println("Username taken, please try again");
+				nextMenu = welcomeMenu;
+			}
 		} else {
 			System.out.println("Username taken, please try again");
 			nextMenu = welcomeMenu;

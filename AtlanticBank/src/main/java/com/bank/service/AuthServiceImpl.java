@@ -1,8 +1,8 @@
 package com.bank.service;
 
 import com.bank.dao.UserDao;
-
 import com.bank.exception.InvalidPassword;
+import com.bank.exception.UserNameTaken;
 import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 
@@ -18,9 +18,10 @@ public class AuthServiceImpl implements AuthService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-
-	public boolean exixtingUser(User user) {
-		try {
+	
+    @Override
+	public boolean existingUser(User user) {
+    	try {
 			if (userDao.getUserByUsername(user.getUsername()) != null) {
 				return true;
 			}
@@ -29,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
 		}
 		return false;
 	}
-
+   @Override
 	public User authenticateUser(User user) throws  UserNotFound, InvalidPassword {
 		User existingUser = userDao.getUserByUsername(user.getUsername());
 		if(existingUser.getPassword().equals(user.getPassword())) {
@@ -37,12 +38,12 @@ public class AuthServiceImpl implements AuthService {
 		}
 		throw new InvalidPassword();
 	}
-
-	public User registerUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+    
+   @Override
+	public User registerUser(User user) throws UserNameTaken {
+	   userDao.createUser(user);
+		return user;
 	}
-
 	public AuthServiceImpl() {
 		super();
 		// TODO Auto-generated constructor stub

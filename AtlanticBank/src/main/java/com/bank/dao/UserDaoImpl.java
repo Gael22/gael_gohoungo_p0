@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.bank.exception.UserNametaken;
+import com.bank.exception.UserNameTaken;
 import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 
@@ -12,7 +12,7 @@ public class UserDaoImpl implements UserDao {
 	
 	public static List<User> userList;
 
-	public void createUser(User user) throws UserNametaken {
+	public void createUser(User user) throws UserNameTaken {
 		
 		if (user.getUsername() != null && user.getPassword() != null) {
 			// Iterate inside User list Object
@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 			while (iter.hasNext()) {
 				if (iter.next().getUsername().equals(user.getUsername())) {
 					//If user name Exist throw UserNameTaken exception
-					throw new UserNametaken();
+					throw new UserNameTaken();
 				}
 			}
 			//if User name not taken, add user
