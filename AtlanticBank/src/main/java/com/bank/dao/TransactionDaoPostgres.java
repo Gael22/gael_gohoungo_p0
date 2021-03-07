@@ -6,7 +6,7 @@ import com.bank.exception.TransactionException;
 import com.bank.pojo.Transaction;
 import com.bank.pojo.User;
 
-public class TransactionDaoImpl implements TransactionDao {
+public class TransactionDaoPostgres implements TransactionDao {
 
 	@Override
 	public void updateCount() throws TransactionException {
