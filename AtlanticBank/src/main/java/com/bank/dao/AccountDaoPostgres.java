@@ -27,7 +27,7 @@ public class AccountDaoPostgres implements AccountDao{
         Account account = null;
 		
 		try(Connection conn = ConnectionFactoryPostgres.getConnection()){
-			String sql = "select * from \"BankProject\".account where number=?";
+			String sql = "select * from \"atl_bank\".account where number=?";
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, accountNumber);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -72,7 +72,7 @@ public class AccountDaoPostgres implements AccountDao{
 		Connection conn;
 		try {
 			conn = ConnectionFactoryPostgres.getConnection();
-			String sql = "INSERT INTO \"BankProject\".account (number,password) VALUES(?,?);";
+			String sql = "INSERT INTO \"atl_bank\".account (number,password) VALUES(?,?);";
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, account.getAccountNumber());
 			preparedStatement.setString(2, account.getPassword());
