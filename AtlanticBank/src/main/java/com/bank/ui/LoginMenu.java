@@ -2,12 +2,17 @@ package com.bank.ui;
 
 import java.util.Scanner;
 
+import com.bank.dao.AccountDao;
 import com.bank.exception.InvalidPassword;
 import com.bank.exception.UserNotFound;
 import com.bank.pojo.User;
 import com.bank.service.AuthService;
 
 public class LoginMenu implements Menu {
+	
+	private MainMenu mainMenu;
+	
+	private Menu nextMenu;
 	
 	private AuthService authService;
 
@@ -44,7 +49,6 @@ public class LoginMenu implements Menu {
 		
 		try {
 			authService.authenticateUser(user);
-			System.out.println("Login successful");
 		} catch (UserNotFound e) {
 			System.out.println("Username does not exist.  Please register an account.");
 		} catch (InvalidPassword e) {
@@ -53,7 +57,14 @@ public class LoginMenu implements Menu {
 			System.out.println("Sorry, something went wrong. Please try again later.");
 			e.printStackTrace();
 		} finally {
-			System.out.println("Login Process Ended");
+			System.out.println();
+		}
+		if (user != null) {
+			nextMenu = mainMenu;
+			System.out.println("Successfully logged in!!!!");
+			System.out.println("Welcome back to your mobile Account");
+		} else {
+			nextMenu = null;
 		}
 		
 		

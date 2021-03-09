@@ -63,7 +63,7 @@ public class UserDaoPostgres implements UserDao {
 			
 			//conn.setSchema(schema);
 			
-			String sql = "select * from atl_bank.user where username = ' + username + '";
+			String sql = "select * from atl_bank.user where username = '" + username + "'";
 			
 			Statement stmt = conn.createStatement();
 			
@@ -85,13 +85,27 @@ public class UserDaoPostgres implements UserDao {
 
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
+		/* Connection conn = null;
+		 PreparedStatement stmt = null;
+		 
+		 String sql = "select * from user where = Where username = ?";
+		 
+		 conn = ConnectionFactoryPostgres.getConnection();
+		 
+		 try {
+			conn.prepareStatement(sql);
+			stmt.setString(1, user.getUsername);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		return null;
 	}
 
 	@Override
 	public void updateUser(User user, String new_password) {
-Connection conn = null;
+        Connection conn = null;
 		
 		PreparedStatement stmt = null;
 		

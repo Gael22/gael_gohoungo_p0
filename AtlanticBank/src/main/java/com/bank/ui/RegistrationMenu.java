@@ -7,8 +7,10 @@ import com.bank.pojo.User;
 import com.bank.service.AuthService;
 
 public class RegistrationMenu implements Menu {
-
+	
 	private Menu welcomeMenu;
+
+	private Menu MainMenu;
 
 	private Menu nextMenu;
 	
@@ -31,7 +33,9 @@ public class RegistrationMenu implements Menu {
 		if (!authService.existingUser(user)) {
 			try {
 				authService.registerUser(user);
-				nextMenu = null;
+				nextMenu = MainMenu;
+				System.out.println("Successfully registered!!!!");
+				System.out.println("Welcome to your new mobile Account");
 			} catch (UserNameTaken e) {
 				System.out.println("Username taken, please try again");
 				nextMenu = welcomeMenu;
@@ -39,6 +43,7 @@ public class RegistrationMenu implements Menu {
 		} else {
 			System.out.println("Username taken, please try again");
 			nextMenu = welcomeMenu;
+			
 		}
 	}
 

@@ -21,7 +21,7 @@ public class Driver {
 		Scanner scan = new Scanner(System.in);
 		
 		UserDao userDao = new UserDaoPostgres();
-		AccountDaoPostgres AccountDao = new AccountDaoPostgres();
+
 		
 		AuthService authService = new AuthServiceImpl(userDao);
 		
