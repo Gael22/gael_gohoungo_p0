@@ -2,12 +2,14 @@ package com.bank.util;
 
 import java.sql.Connection;
 
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
 public class ConnectionFactoryPostgres {
+
 	
 	Logger log = Logger.getRootLogger();
 	
@@ -40,13 +42,11 @@ public class ConnectionFactoryPostgres {
 		try {
 			return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (SQLException e) {
-			log.error("Failed to connect to DB", e);
-		}
+			log.error("Failed to connect to DB", e);		}
 		return null;
 		
 		
 	}
-	
 	
 	public static Connection getConnection() {
 		if (connectionFactory == null) {

@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import com.bank.util.ConnectionFactoryPostgres;
-//import com.bank.util.ConnectionFactoryPostgres2;
+
 
 public class ConnectionFactoryTest {
 
