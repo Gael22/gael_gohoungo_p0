@@ -33,11 +33,14 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public void insertAccount(Account user) throws AccountException {
+	public void insertAccount(Account account) throws AccountException {
 		log.debug("inserting account");
-		accountDao.insertAccount(user);
+		accountDao.insertAccount(account);
+		
+	}
+	
 		
 	}
 
 	
-}
+

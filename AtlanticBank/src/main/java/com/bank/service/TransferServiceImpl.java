@@ -5,16 +5,17 @@ import java.util.List;
 import com.bank.dao.TransferDao;
 import com.bank.dao.TransferDaoPostgres;
 import com.bank.exception.TransferException;
+import com.bank.pojo.Customer;
 import com.bank.pojo.Transfer;
-import com.bank.pojo.User;
+
 
 public class TransferServiceImpl implements TransferService {
 	
 	private TransferDao transferDao = new TransferDaoPostgres();
 
 	@Override
-	public int getNumberOfUnapprovedTransfers(User user) throws TransferException {
-		return transferDao.getNumberOfUnapporvedTransfers(user);
+	public int getNumberOfUnapprovedTransfers(Customer customer) throws TransferException {
+		return transferDao.getNumberOfUnapporvedTransfers(customer);
 	}
 
 	@Override
@@ -23,8 +24,8 @@ public class TransferServiceImpl implements TransferService {
 	}
 
 	@Override
-	public List<Transfer> getUnapprovedTransfersForAnAccount(String accountNumber) throws TransferException {
-		return transferDao.getUnapprovedTransfersForAnAccount(accountNumber);
+	public List<Transfer> getUnapprovedTransfersForAnAccount(String accountNumberOfReceiver) throws TransferException {
+		return transferDao.getUnapprovedTransfersForAnAccount(accountNumberOfReceiver);
 	}
 
 	@Override

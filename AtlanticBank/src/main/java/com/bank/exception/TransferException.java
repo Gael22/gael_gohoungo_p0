@@ -2,36 +2,10 @@ package com.bank.exception;
 
 public class TransferException extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public TransferException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public TransferException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
+	public TransferException(String args0) {
+		super(args0);
 	}
-
-	public TransferException(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
-	}
-
-	public TransferException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
-
-	public TransferException(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-
 }

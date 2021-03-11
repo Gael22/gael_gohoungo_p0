@@ -1,6 +1,8 @@
 package com.bank.pojo;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
+
 
 public class Transfer {
 
@@ -11,6 +13,33 @@ public class Transfer {
 	private double amount;
 	private Date dateOfCreation;
 	public boolean approved;
+	
+	public Transfer() {
+	}
+	public Transfer(Customer customer,String receiverAccountNumber, double amount) {
+		this.senderName = customer.getName();
+		this.senderAccountNumber = customer.getAccountNumber();
+		this.amount = amount;
+		this.receiverAccountNumber = receiverAccountNumber;
+		this.dateOfCreation = Date.valueOf(LocalDate.now());
+		
+	}
+	
+	public Transfer(String senderAccountNumber,String receiverAccountNumber,double amount, Date dateOfCreation,boolean approved, int id, String senderName) {
+		this.senderAccountNumber = senderAccountNumber;
+		this.receiverAccountNumber = receiverAccountNumber;
+		this.amount = amount;
+		this.dateOfCreation = dateOfCreation;
+		this.approved = approved;
+		this.id = id;
+		this.setSenderName(senderName);
+	}
+	public String showToReciever() {
+		return "Sender name: " + senderName + "\nDate Sent: " + dateOfCreation + "\nAmount: " + amount;
+	}
+	public String showAllInfoBeforeSending() {
+		return "Receiver Account Number: " + receiverAccountNumber + "\nAmount: " + amount;
+	}
 	public int getId() {
 		return id;
 	}
@@ -22,12 +51,6 @@ public class Transfer {
 	}
 	public void setSenderAccountNumber(String senderAccountNumber) {
 		this.senderAccountNumber = senderAccountNumber;
-	}
-	public String getSenderName() {
-		return senderName;
-	}
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
 	}
 	public String getReceiverAccountNumber() {
 		return receiverAccountNumber;
@@ -47,29 +70,14 @@ public class Transfer {
 	public void setDateOfCreation(Date dateOfCreation) {
 		this.dateOfCreation = dateOfCreation;
 	}
-	public boolean isApproved() {
-		return approved;
+
+	public String getSenderName() {
+		return senderName;
 	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
-	public Transfer(int id, String senderAccountNumber, String senderName, String receiverAccountNumber, double amount,
-			Date dateOfCreation, boolean approved) {
-		super();
-		this.id = id;
-		this.senderAccountNumber = senderAccountNumber;
+
+	public void setSenderName(String senderName) {
 		this.senderName = senderName;
-		this.receiverAccountNumber = receiverAccountNumber;
-		this.amount = amount;
-		this.dateOfCreation = dateOfCreation;
-		this.approved = approved;
 	}
-	@Override
-	public String toString() {
-		return "Transfer [id=" + id + ", senderAccountNumber=" + senderAccountNumber + ", senderName=" + senderName
-				+ ", receiverAccountNumber=" + receiverAccountNumber + ", amount=" + amount + ", dateOfCreation="
-				+ dateOfCreation + ", approved=" + approved + "]";
-	}
-	
-	
+
+
 }
