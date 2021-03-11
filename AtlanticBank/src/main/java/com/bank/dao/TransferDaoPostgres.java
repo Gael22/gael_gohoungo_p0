@@ -21,7 +21,7 @@ public class TransferDaoPostgres implements TransferDao {
 	public Transfer getTransferByID(int id) throws TransferException {
 		try {
 			Connection connection = ConnectionFactoryPostgres.getConnection();
-			String sql = "select * from \"atl_bank\".transfer where id = ?";
+			String sql = "select * from atl_bank.transfer where id = ?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -42,7 +42,7 @@ public class TransferDaoPostgres implements TransferDao {
 		List<Transfer> transfers = new ArrayList();
 		try {
 			Connection connection = ConnectionFactoryPostgres.getConnection();
-			String sql = "Select * from \"atl_bank\".transfer where receiveraccountnumber = ? AND approved =false";
+			String sql = "Select * from atl_bank.transfer where receiveraccountnumber = ? AND approved =false";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, accountNumberOfReceiver);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -61,7 +61,7 @@ public class TransferDaoPostgres implements TransferDao {
 	public int getNumberOfUnapporvedTransfers(Customer customer) throws TransferException {
 		try {
 			Connection connection = ConnectionFactoryPostgres.getConnection();
-			String sql = "SELECT COUNT(id) from \"BankProject\".transfer where receiveraccountnumber=? and approved = false";
+			String sql = "SELECT COUNT(id) from atl_Bank.transfer where receiveraccountnumber=? and approved = false";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, customer.getAccountNumber());
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -83,7 +83,7 @@ public class TransferDaoPostgres implements TransferDao {
 try {
 			
 			Connection connection = ConnectionFactoryPostgres.getConnection();
-			String sqlTransfer ="INSERT INTO \"BankProject\".transfer\r\n"
+			String sqlTransfer ="INSERT INTO atl_bank.transfer\r\n"
 					+ "(senderaccountnumber, receiveraccountnumber, amount, dateofcreation,sendername)\r\n"
 					+ "VALUES(?, ?, ?, ?,?);";
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlTransfer);
@@ -111,7 +111,7 @@ try {
 	public boolean approveTransfer(int id, String accountNumberOfReceiver) throws TransferException {
 		try {
 			Connection connection = ConnectionFactoryPostgres.getConnection();
-			String sql = "UPDATE \"atl_bank\".transfer\r\n"
+			String sql = "UPDATE atl_bank.transfer\r\n"
 					+ "	SET approved=true\r\n"
 					+ "	WHERE id=? AND receiveraccountnumber=?;";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);

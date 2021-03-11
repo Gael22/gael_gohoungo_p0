@@ -19,34 +19,11 @@ public class AccountDaoPostgres implements AccountDao{
 	Logger log = Logger.getRootLogger();
 
 	@Override
-	public boolean doesAccountExists(String accountNumber) throws AccountException {
-		
-		try {
-			Connection conn = ConnectionFactoryPostgres.getConnection();
-			String sql = "select COUNT(number) from \"atl_bank\".account where number =?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, accountNumber);
-			ResultSet resultSet = stmt.executeQuery();
-			while(resultSet.next())
-				if(resultSet.getInt("count")>0)
-					return true;
-				else
-					return false;
-			return false;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			log.trace(e.getMessage());
-			throw new AccountException("ERROR INSIDE THE DOES ACCOUNT EXIST METHOD");
-		}
-		
-	}
-
-	@Override
 	public Account getAccountByAccountNumber(String accountNumber) throws AccountException {
         Account account = null;
 		
 		try(Connection conn = ConnectionFactoryPostgres.getConnection()){
-			String sql = "select * from \"atl_bank\".account where number=?";
+			String sql = "select * from atl_bank.account where accountnumber=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, accountNumber);
 			ResultSet resultSet = stmt.executeQuery();
@@ -54,7 +31,7 @@ public class AccountDaoPostgres implements AccountDao{
 			if(resultSet.next())
 			{
 				log.debug("If in DAO");
-				account = new Account(resultSet.getString("number"),resultSet.getString("password"));
+				account = new Account(resultSet.getString("accountnumber"),resultSet.getString("password"));
 			} else {
 				log.debug("else in dao");
 				throw new AccountException("No account under the account number " + accountNumber);
@@ -77,7 +54,7 @@ public class AccountDaoPostgres implements AccountDao{
 	public List<Account> getAllAccounts() throws AccountException {
 		List<Account> accountList = new ArrayList<>();
 		try (Connection conn = ConnectionFactoryPostgres.getConnection()){
-			String sql = "select * from \"atl_bank\".account";
+			String sql = "select * from atl_bank.account";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet resultSet = stmt.executeQuery();
 			while(resultSet.next()) {
@@ -103,7 +80,7 @@ public class AccountDaoPostgres implements AccountDao{
 	public List<Account> getAllUnapproved() throws AccountException {
 		List<Account> accountList = new ArrayList<>();
 		try(Connection conn = ConnectionFactoryPostgres.getConnection()){
-			String sql = "select * from \"atl_bank\".account where account = false";
+			String sql = "select * from atl_bank.account where account = false";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet resultSet = stmt.executeQuery();
 			while(resultSet.next()) {
@@ -122,7 +99,7 @@ public class AccountDaoPostgres implements AccountDao{
 		Connection conn;
 		try {
 			conn = ConnectionFactoryPostgres.getConnection();
-			String sql = "INSERT INTO \"atl_bank\".account (number,password) VALUES(?,?);";
+			String sql = "INSERT INTO atl_bank.account (number,password) VALUES(?,?);";
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, account.getAccountNumber());
 			preparedStatement.setString(2, account.getPassword());
@@ -138,6 +115,30 @@ public class AccountDaoPostgres implements AccountDao{
 			throw new AccountException("ERROR INSIDE ACCOUNT ADDER DAO");
 		}
 		
+		
+	}
+	
+	@Override
+	public boolean doesAccountExists(String accountNumber) throws AccountException {
+		
+		
+		try {
+			Connection conn = ConnectionFactoryPostgres.getConnection();
+			String sql = "select COUNT(number) from atl_bank.account where number =?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, accountNumber);
+			ResultSet resultSet = stmt.executeQuery();
+			while(resultSet.next())
+				if(resultSet.getInt("count")>0)
+					return true;
+				else
+					return false;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.trace(e.getMessage());
+			throw new AccountException("ERROR INSIDE THE DOES ACCOUNT EXIST METHOD");
+		}
 		
 	}
 	

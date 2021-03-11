@@ -24,7 +24,7 @@ public class TransactionDaoPostgres implements TransactionDao {
 	@Override
 	public void updateCount() throws TransactionException {
 		try {
-			String sql = "select count(id) from \"atl_bank\".transaction";
+			String sql = "select count(id) from atl_bank.transaction";
 			Connection connection = ConnectionFactoryPostgres.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -39,7 +39,7 @@ public class TransactionDaoPostgres implements TransactionDao {
 	@Override
 	public Transaction getTransactionById(int id) throws TransactionException {
 		try {
-			String sql = "select * from \"atl_bank\".transaction where id = ?";
+			String sql = "select * from atl_bank.transaction where id = ?";
 			Connection connection = ConnectionFactoryPostgres.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
@@ -61,7 +61,7 @@ public class TransactionDaoPostgres implements TransactionDao {
 	public List<Transaction> getAllTransactions() throws TransactionException {
 		List<Transaction> transactions = new ArrayList();
 		try {
-			String sql = "select * from \"atl_bank\".transaction";
+			String sql = "select * from atl_bank.transaction";
 			Connection connection = ConnectionFactoryPostgres.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -80,7 +80,7 @@ public class TransactionDaoPostgres implements TransactionDao {
 	public List<Transaction> getAllTransactionsOfACustomer(Customer customer) throws TransactionException {
 		List<Transaction> transactions = new ArrayList();
 		try {
-			String sql = "select * from \"BankProject\".transaction where accountnumber = ?";
+			String sql = "select * from atl_bank.transaction where accountnumber = ?";
 			Connection connection = ConnectionFactoryPostgres.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, customer.getAccountNumber());
@@ -103,7 +103,7 @@ public class TransactionDaoPostgres implements TransactionDao {
 			CustomerService customerServicer = new CustomerServiceImpl();
 			customerServicer.updateCustomerAmount(customer, transaction.getTransactionAmount(), transaction.getType());
 			
-			String sqlForTransaction = "INSERT INTO \"atl_bank\".\"transaction\" (accountnumber, previousamount, newamount, transactionamount, \"date\",type) VALUES(?, ?, ?, ?, ?,?);";
+			String sqlForTransaction = "INSERT INTO atl_bank.transaction (accountnumber, previousamount, newamount, transactionamount, \"date\",type) VALUES(?, ?, ?, ?, ?,?);";
 			Connection connection = ConnectionFactoryPostgres.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlForTransaction);
 			preparedStatement.setString(1, transaction.getAccountNumber());
